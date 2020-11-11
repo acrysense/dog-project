@@ -24,7 +24,12 @@
           align-items: center;
   margin: 0 auto;
   margin-bottom: 48px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   overflow: hidden;
+  background: #FFF;
+  border: 1px solid #CFD8DC;
   border-radius: 94px;
 }
 
@@ -34,13 +39,15 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  border-radius: 94px;
   cursor: pointer;
 }
 
 .switch__item--active {
   color: #fff;
   background: #3C5FAC;
+  border-radius: 94px;
+  -webkit-box-shadow: 0 -1px 0 #3C5FAC;
+          box-shadow: 0 -1px 0 #3C5FAC;
 }
 
 .switch__content {
