@@ -1,0 +1,307 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 24px;
+}
+
+.logotype--header {
+  position: relative;
+  z-index: 101;
+}
+
+.nav__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav__item + .nav__item {
+  margin-left: 32px;
+}
+
+.nav__link {
+  font-size: 16px;
+}
+
+.nav__link:hover {
+  color: #3C5FAC;
+}
+
+.nav__link--active {
+  color: #3C5FAC;
+}
+
+.interface {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.shopping-cart__link {
+  display: block;
+  margin-right: 24px;
+  font-size: 16px;
+}
+
+.shopping-cart__link:hover {
+  color: #3C5FAC;
+}
+
+.shopping-cart__basket {
+  position: relative;
+  display: block;
+  margin-right: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.shopping-cart__basket--amount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: #FFF;
+  background: #3C5FAC;
+  border-radius: 50%;
+}
+
+.sign-up {
+  padding: 8px 20px;
+  border-radius: 94px;
+}
+
+.hamburger {
+  display: inline-block;
+  position: relative;
+  z-index: 101;
+  padding: 0;
+  margin: 0;
+  min-width: 24px;
+  height: 24px;
+  font-size: 0;
+  text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger--active .hamburger__inner:first-child {
+  top: 10px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.hamburger--active .hamburger__inner:nth-child(2) {
+  width: 0;
+  opacity: 0;
+}
+
+.hamburger--active .hamburger__inner:last-child {
+  top: 10px;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.hamburger__inner {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #273238;
+  border-radius: 30px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.hamburger__inner:first-child {
+  top: 0;
+}
+
+.hamburger__inner:nth-child(2) {
+  top: 10px;
+}
+
+.hamburger__inner:last-child {
+  top: 20px;
+}
+
+@-webkit-keyframes fadeInRight {
+  0% {
+    left: 50px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    left: 50px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .hamburger,
+  .interface--mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    -webkit-transform-origin: right top;
+        -ms-transform-origin: right top;
+            transform-origin: right top;
+    -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+            transform: scale(0);
+    overflow: hidden;
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background: #FFF;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  .overlay--open {
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+    visibility: visible;
+    opacity: 0.99;
+  }
+  .overlay--open .nav__item {
+    display: block;
+    -webkit-animation: fadeInRight 0.5s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards;
+            animation: fadeInRight 0.5s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards;
+    -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+    -webkit-transform-origin: bottom;
+        -ms-transform-origin: bottom;
+            transform-origin: bottom;
+  }
+  .overlay--open .nav__item:nth-of-type(2) {
+    -webkit-animation-delay: 0.45s;
+            animation-delay: 0.45s;
+  }
+  .overlay--open .nav__item:nth-of-type(3) {
+    -webkit-animation-delay: 0.55s;
+            animation-delay: 0.55s;
+  }
+  .overlay--open .nav__item:nth-of-type(4) {
+    -webkit-animation-delay: 0.65s;
+            animation-delay: 0.65s;
+  }
+  .overlay--open .nav__item:nth-of-type(5) {
+    -webkit-animation-delay: 0.75s;
+            animation-delay: 0.75s;
+  }
+  .overlay--open .nav__item:nth-of-type(6) {
+    -webkit-animation-delay: 0.85s;
+            animation-delay: 0.85s;
+  }
+  .overlay--open .nav__item:nth-of-type(7) {
+    -webkit-animation-delay: 0.95s;
+            animation-delay: 0.95s;
+  }
+  .overlay--open .nav__item:nth-of-type(8) {
+    -webkit-animation-delay: 1.05s;
+            animation-delay: 1.05s;
+  }
+  .overlay--open .nav__item:nth-of-type(9) {
+    -webkit-animation-delay: 1.15s;
+            animation-delay: 1.15s;
+  }
+  .overlay--open .nav__item:nth-of-type(10) {
+    -webkit-animation-delay: 1.25s;
+            animation-delay: 1.25s;
+  }
+  .nav {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    z-index: 101;
+    margin: 0 24px;
+    width: calc(100% - 48px);
+    padding-bottom: 32px;
+  }
+  .nav__list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .nav__item {
+    position: relative;
+    width: 100%;
+    opacity: 0;
+  }
+  .nav__item + .nav__item {
+    margin-top: 24px;
+    margin-left: 0;
+  }
+  .interface:not(.interface--mobile) {
+    display: none;
+  }
+  .interface {
+    display: block;
+  }
+  .interface--mobile {
+    position: absolute;
+    left: 24px;
+    bottom: 31px;
+    padding-top: 44px;
+    width: calc(100% - 48px);
+    border-top: 1px solid #CFD8DC;
+  }
+  .shopping-cart {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 28px;
+  }
+}
