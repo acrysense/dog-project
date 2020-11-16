@@ -7,7 +7,7 @@
 }
 
 .flying__wrapper {
-  margin: 16px auto 60px;
+  margin: 16px auto 12px;
   max-width: 562px;
   text-align: center;
 }
@@ -22,7 +22,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 auto;
+  margin: 48px auto 0;
   margin-bottom: 48px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -39,6 +39,8 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+  text-align: center;
+  color: #3C5FAC;
   cursor: pointer;
 }
 
