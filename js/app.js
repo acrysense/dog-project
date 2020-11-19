@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+    /**
+     * NodeList.prototype.forEach() polyfill
+     * https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Polyfill
+     */
+    if (window.NodeList && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = function (callback, thisArg) {
+            thisArg = thisArg || window;
+            for (var i = 0; i < this.length; i++) {
+                callback.call(thisArg, this[i], i, this);
+            }
+        };
+    }
+    
     // MOBILE MENU
     const hamburger = document.getElementById('hamburger-toggle')
     const overlay = document.getElementsByClassName('overlay')[0]
@@ -53,6 +66,16 @@ document.addEventListener("DOMContentLoaded", function () {
             })
         })
     }
+
+    // SLICK
+    $('.banner').slick({
+        infinite: true,
+        arrows: false,
+        dots: true,
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    });
 
     // ACCORDIONS FAQ
     const faq = document.querySelectorAll('.faq__trigger')

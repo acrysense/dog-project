@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Registry Project - Profile</title>
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animal.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="" class="logotype logotype--header">
+            <picture>
+                <source srcset="img/icons/logotype.svg" media="(min-width: 1200px)">
+                <img src="img/icons/logotype-mobile.svg" alt="">
+            </picture>
+        </a>
+        <div class="overlay">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="service-animal.html" class="nav__link">Service Animal</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="esa.html" class="nav__link">ESA</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="shop.html" class="nav__link">Shop</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="blog.html" class="nav__link">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="faq.html" class="nav__link">FAQ</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="flying.html" class="nav__link">Flying with a Dog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="verify-registration.html" class="nav__link nav__link--active">Verify Registration</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-delimiter"></div>
+            <div class="interface interface--mobile">
+                <div class="shopping-cart">
+                    <a href="" class="shopping-cart__link">Cart</a>
+                    <a href="" class="shopping-cart__basket" style="background-image: url(img/icons/basket-icon.svg);">
+                        <span class="shopping-cart__basket--amount">2</span>
+                    </a>
+                </div>
+                <a href="" class="sign-up btn">Sign Up</a>
+            </div>
+        </div>
+        <div class="interface">
+            <div class="shopping-cart">
+                <a href="" class="shopping-cart__basket" style="background-image: url(img/icons/basket-icon.svg);">
+                    <span class="shopping-cart__basket--amount">2</span>
+                </a>
+            </div>
+            <a href="" class="sign-up btn">Sign Up</a>
+        </div>
+        <button class="hamburger" id="hamburger-toggle">
+            Меню
+            <span class="hamburger__inner"></span>
+            <span class="hamburger__inner"></span>
+            <span class="hamburger__inner"></span>
+        </button>
+    </header>
+    <!-- End of header -->
+    <!-- Profile -->
+    <section class="profile" id="profile">
+        <div class="container">
+            <div class="profile__wrapper">
+                <a href="verify-registration.html" class="back">Back</a>
+                <div class="profile__info">
+                    <div class="profile__ava" style="background-image: url(img/pet-ava.png);"></div>
+                    <div class="profile__details">
+                        <div class="profile__name">Jack</div>
+                        <div class="profile__id">ID <span class="profile__id--value">821857396</span></div>
+                    </div>
+                </div>
+                <div class="profile__wrap">
+                    <div class="profile__inner">
+                        <div class="profile__title">Animal info</div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">Date of birth</div>
+                                <div class="profile__value">Regular 18</div>
+                            </div>
+                            <div class="profile__item">
+                                <div class="profile__heading">Animal</div>
+                                <div class="profile__value">Feline</div>
+                            </div>
+                        </div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">Gender</div>
+                                <div class="profile__value">Male</div>
+                            </div>
+                            <div class="profile__item">
+                                <div class="profile__heading">Weight</div>
+                                <div class="profile__value">2.0 lb</div>
+                            </div>
+                        </div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">Address 1</div>
+                                <div class="profile__value">830 Stewart Dr</div>
+                            </div>
+                        </div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">Address 2</div>
+                                <div class="profile__value">212</div>
+                            </div>
+                        </div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">City</div>
+                                <div class="profile__value">Sunnyvale</div>
+                            </div>
+                        </div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">State</div>
+                                <div class="profile__value">CA</div>
+                            </div>
+                            <div class="profile__item">
+                                <div class="profile__heading">Zip</div>
+                                <div class="profile__value">94085</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile__inner">
+                        <div class="profile__title">Parent info</div>
+                        <div class="profile__group">
+                            <div class="profile__item">
+                                <div class="profile__heading">Name</div>
+                                <div class="profile__value">Evgeny Nasonov</div>
+                            </div>
+                            <div class="profile__item">
+                                <div class="profile__heading">City</div>
+                                <div class="profile__value">Sunnyvale</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of profile -->
+    <!-- Scripts -->
+    <script src="js/app.min.js"></script>
+</body>
+</html>

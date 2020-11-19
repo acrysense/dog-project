@@ -6,12 +6,6 @@
   text-align: center;
 }
 
-.flying__wrapper {
-  margin: 16px auto 12px;
-  max-width: 562px;
-  text-align: center;
-}
-
 .switch__control {
   display: -webkit-box;
   display: -ms-flexbox;
