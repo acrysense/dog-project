@@ -68,13 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // SLICK
-    $('.banner').slick({
+    $('.product__slider').slick({
         infinite: true,
         arrows: false,
         dots: true,
-        slidesToShow: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
+        slidesToShow: 1
     });
 
     // ACCORDIONS FAQ
