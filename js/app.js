@@ -58,13 +58,92 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (categoriesItems) {
-        categoriesItems.forEach((item, i) => {
+        categoriesItems.forEach((item) => {
             item.addEventListener('click', (event) => {
                 event.preventDefault()
                 document.querySelectorAll('.categories__link').forEach((child) => child.classList.remove('categories__link--active'))
                 item.classList.add('categories__link--active')
             })
         })
+    }
+
+    // QUANTITY
+    let countInput = document.getElementsByClassName('product__number'),
+        countInputCart = document.getElementsByClassName('cart__number')
+    const productQuantity = document.querySelectorAll('.product__quantity'),
+        cartQuantity = document.querySelectorAll('.cart__quantity'),
+        minus = document.getElementsByClassName('product__minus'),
+        plus = document.getElementsByClassName('product__plus'),
+        minusCart = document.getElementsByClassName('cart__minus'),
+        plusCart = document.getElementsByClassName('cart__plus')
+
+    productQuantity.forEach((s, i) => {
+        minus[i].addEventListener('click', function() {
+            if ((countInput[i].value) * 1 >= 1) {
+                countInput[i].value = (countInput[i].value) * 1 - 1;
+            }
+        });
+
+        plus[i].addEventListener('click', function() {
+            countInput[i].value = (countInput[i].value) * 1 + 1;
+        })
+    })
+
+    cartQuantity.forEach((s, i) => {
+        minusCart[i].addEventListener('click', function() {
+            if ((countInputCart[i].value) * 1 >= 1) {
+                countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
+            }
+        });
+
+        plusCart[i].addEventListener('click', function() {
+            countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+        })
+    })
+
+    // CART
+    const modalBtn = document.querySelectorAll('.shopping-cart__basket'),
+        modal = document.querySelector('.cart'),
+        modalClose = document.querySelector('.cart__close'),
+        modalOverlay = document.querySelector('.cart-overlay');
+    
+    if (modalBtn) {
+        modalBtn.forEach(function(item){
+            item.addEventListener('click', function (event) {
+                event.preventDefault();
+    
+                document.body.classList.add('scroll-disabled');
+                modal.classList.add('cart--active');
+                modalOverlay.classList.add('cart-overlay--active');
+            });
+        });
+    }
+
+    document.body.addEventListener('keyup', function (event) {
+        let key = event.keyCode;
+
+        if (key == 27) {
+            document.body.classList.remove('scroll-disabled');
+            document.querySelector('.cart.cart--active').classList.remove('cart--active');
+            document.querySelector('.cart-overlay').classList.remove('cart-overlay--active');
+        };
+    }, false);
+
+
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function() {
+            document.body.classList.remove('scroll-disabled');
+            document.querySelector('.cart.cart--active').classList.remove('cart--active');
+            this.classList.remove('cart-overlay--active');
+        });
+    }
+
+    if (modalClose) {
+        modalClose.addEventListener('click', function() {
+            document.body.classList.remove('scroll-disabled');
+            document.querySelector('.cart.cart--active').classList.remove('cart--active');
+            modalOverlay.classList.remove('cart-overlay--active');
+        });
     }
 
     // SLICK

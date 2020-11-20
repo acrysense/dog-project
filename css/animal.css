@@ -24,8 +24,6 @@
 }
 
 .search-form__input {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   padding: 16px 25px;
   max-width: 336px;
   width: 100%;
@@ -106,8 +104,6 @@
 }
 
 .profile__inner {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   padding: 24px;
   width: 100%;
   border: 1px solid #CFD8DC;
