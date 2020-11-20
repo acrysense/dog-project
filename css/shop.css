@@ -348,3 +348,12 @@
     max-width: 100%;
   }
 }
+
+@media (max-width: 369px) {
+  .product__buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
