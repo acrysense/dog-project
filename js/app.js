@@ -11,22 +11,174 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
     }
+
+    // ORDER OPEN/CLOSE ON MOBILE
+    const orderBtn = document.querySelector('.order__preview')
+
+    orderBtn.addEventListener('click', () => {
+        if (orderBtn.classList.contains('order__preview--active')) {
+            $('.order__content').slideUp(350)
+            orderBtn.classList.remove('order__preview--active')
+        }
+        else {
+            $('.order__content').slideDown(350)
+            orderBtn.classList.add('order__preview--active')
+        }
+    })
+    
+    // ORDER PROMOCODE
+    const promocodeCheckbox = document.getElementById('promocode-checkbox'),
+        promocodeInput = document.querySelector('.order__promocode'),
+        promocodeApply = document.querySelector('.order__apply')
+
+    promocodeCheckbox.addEventListener('click', () => {
+        if (promocodeCheckbox.checked) {
+            promocodeInput.classList.add('order__promocode--active')
+        }
+        else {
+            promocodeInput.classList.remove('order__promocode--active')
+        }
+    })
+
+    promocodeApply.addEventListener('click', (event) => {
+        event.preventDefault()
+
+        promocodeInput.classList.remove('order__promocode--active')
+        document.querySelector('.order__applied').classList.add('order__applied--active')
+    })
+
+    // CHECKBOX
+    let stageCounter = 0 // Stage counter
+    let stageDependence = 0 // At value '0' skipping 2nd stage, at value '2' go to 2nd stage
+
+    const checkboxBtn = document.querySelectorAll('.custom-checkbox--category')
+
+    if (checkboxBtn) {
+        checkboxBtn.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                let checkboxNumber = item.dataset.product - 1
+
+                document.querySelectorAll('.checkout-form__wrap').forEach((child) => child.classList.add('checkout-form__wrap--hidden'))
+                document.querySelectorAll('.checkout-form__wrap')[checkboxNumber].classList.remove('checkout-form__wrap--hidden')
+                
+                stageDependence = 2 // When choosing a special service go to 2nd stage
+                
+                if (checkboxNumber == 1) {
+                    stageDependence = 3
+                }
+            })
+        })
+    }
+
+    // CONTINUE AND BACK
+    const continueBtn = document.querySelectorAll('.checkout-form__continue'),
+        backBtn = document.querySelectorAll('.checkout-form__back')
+
+    if (continueBtn) {
+        continueBtn.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                const stageItems = document.querySelectorAll('.stage__item'),
+                    stageWrapper = document.querySelectorAll('.checkout-form__stage'),
+                    stageSuccess = document.querySelector('.checkout-form__success')
+                
+                if (stageCounter < 3) {
+                    stageItems.forEach((child) => child.classList.remove('stage__item--active'))
+                    stageWrapper.forEach((child) => child.classList.remove('checkout-form__stage--active'))
+
+                    if (stageDependence === 0) {
+                        stageItems[stageCounter].classList.add('stage__item--success')
+                        stageDependence = 1
+                        stageCounter++
+                    }
+
+                    if (stageDependence === 3 && stageCounter == 1) {
+                        stageItems[stageCounter].classList.add('stage__item--success')
+                        stageCounter++
+                    }
+
+                    stageCounter++
+                    stageItems[stageCounter - 1].classList.add('stage__item--success')
+
+                    stageItems[stageCounter].classList.add('stage__item--active')
+                    stageWrapper[stageCounter].classList.add('checkout-form__stage--active')
+                }
+                else {
+                    stageItems[stageCounter].classList.add('stage__item--success')
+                    stageWrapper.forEach((child) => child.classList.remove('checkout-form__stage--active'))
+                    stageSuccess.classList.add('checkout-form__success--active')
+                }
+            })
+        })
+    }
+
+    if (backBtn) {
+        backBtn.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                const stageItems = document.querySelectorAll('.stage__item'),
+                    stageWrapper = document.querySelectorAll('.checkout-form__stage')
+                
+                stageItems.forEach((child) => child.classList.remove('stage__item--active'))
+                stageWrapper.forEach((child) => child.classList.remove('checkout-form__stage--active'))
+                
+                if (stageCounter === 2 && stageDependence === 1) {
+                    stageDependence = 0
+                    stageCounter--
+                    stageItems[stageCounter].classList.remove('stage__item--success')
+                }
+
+                if (stageDependence === 3 && stageCounter == 3) {
+                    stageCounter--
+                    stageItems[stageCounter].classList.remove('stage__item--success')
+                }
+                
+                stageCounter--
+                stageItems[stageCounter].classList.remove('stage__item--success')
+                stageItems[stageCounter].classList.add('stage__item--active')
+                stageWrapper[stageCounter].classList.add('checkout-form__stage--active')
+            })
+        })
+    }
+
+    // QUIZ
+    const quizComment = document.querySelectorAll('.quiz__comment')
+
+    if (quizComment) {
+        quizComment.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.quiz__textarea')[i].classList.toggle('quiz__textarea--active')
+
+                let content = item.innerText
+                if (content === 'Add comment') {
+                    item.innerHTML = 'Cancel'
+                }
+                else {
+                    item.innerHTML = 'Add comment'
+                }
+            })
+        })
+    }
     
     // MOBILE MENU
     const hamburger = document.getElementById('hamburger-toggle')
     const overlay = document.getElementsByClassName('overlay')[0]
 
-    hamburger.addEventListener('click', () => {
-        if (hamburger.classList.contains('hamburger--active') && overlay.classList.contains('overlay--open')) {
-            hamburger.classList.remove("hamburger--active");
-            overlay.classList.remove("overlay--open");
-            document.body.classList.remove("scroll-disabled");
-        } else {
-            hamburger.classList.add("hamburger--active");
-            overlay.classList.add("overlay--open");
-            document.body.classList.add("scroll-disabled");
-        }
-    });
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            if (hamburger.classList.contains('hamburger--active') && overlay.classList.contains('overlay--open')) {
+                hamburger.classList.remove("hamburger--active");
+                overlay.classList.remove("overlay--open");
+                document.body.classList.remove("scroll-disabled");
+            } else {
+                hamburger.classList.add("hamburger--active");
+                overlay.classList.add("overlay--open");
+                document.body.classList.add("scroll-disabled");
+            }
+        });
+    }
 
     // TABS
     const switchItems = document.querySelectorAll('.switch__item'),
@@ -70,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // QUANTITY
     let countInput = document.getElementsByClassName('product__number'),
         countInputCart = document.getElementsByClassName('cart__number')
+    
     const productQuantity = document.querySelectorAll('.product__quantity'),
         cartQuantity = document.querySelectorAll('.cart__quantity'),
         minus = document.getElementsByClassName('product__minus'),
@@ -77,29 +230,33 @@ document.addEventListener("DOMContentLoaded", function () {
         minusCart = document.getElementsByClassName('cart__minus'),
         plusCart = document.getElementsByClassName('cart__plus')
 
-    productQuantity.forEach((s, i) => {
-        minus[i].addEventListener('click', function() {
-            if ((countInput[i].value) * 1 >= 1) {
-                countInput[i].value = (countInput[i].value) * 1 - 1;
-            }
-        });
-
-        plus[i].addEventListener('click', function() {
-            countInput[i].value = (countInput[i].value) * 1 + 1;
+    if (productQuantity) {
+        productQuantity.forEach((i) => {
+            minus[i].addEventListener('click', () => {
+                if ((countInput[i].value) * 1 >= 1) {
+                    countInput[i].value = (countInput[i].value) * 1 - 1;
+                }
+            });
+    
+            plus[i].addEventListener('click', () => {
+                countInput[i].value = (countInput[i].value) * 1 + 1;
+            })
         })
-    })
+    }
 
-    cartQuantity.forEach((s, i) => {
-        minusCart[i].addEventListener('click', function() {
-            if ((countInputCart[i].value) * 1 >= 1) {
-                countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
-            }
-        });
-
-        plusCart[i].addEventListener('click', function() {
-            countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+    if (cartQuantity) {
+        cartQuantity.forEach((i) => {
+            minusCart[i].addEventListener('click', () => {
+                if ((countInputCart[i].value) * 1 >= 1) {
+                    countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
+                }
+            });
+    
+            plusCart[i].addEventListener('click', () => {
+                countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+            })
         })
-    })
+    }
 
     // CART
     const modalBtn = document.querySelectorAll('.shopping-cart__basket'),
@@ -152,6 +309,29 @@ document.addEventListener("DOMContentLoaded", function () {
         arrows: false,
         dots: true,
         slidesToShow: 1
+    });
+
+    $('.shop__wrapper--slider').slick({
+        infinite: true,
+        arrows: true,
+        prevArrow: '<a class="arrow-left"><img src="img/icons/arrow-left.svg" alt=""></a>',
+        nextArrow: '<a class="arrow-right"><img src="img/icons/arrow-right.svg" alt=""></a>',
+        dots: false,
+        slidesToShow: 3,
+        responsive: [
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 575,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
     });
 
     // ACCORDIONS FAQ
