@@ -15,37 +15,43 @@ document.addEventListener("DOMContentLoaded", function () {
     // ORDER OPEN/CLOSE ON MOBILE
     const orderBtn = document.querySelector('.order__preview')
 
-    orderBtn.addEventListener('click', () => {
-        if (orderBtn.classList.contains('order__preview--active')) {
-            $('.order__content').slideUp(350)
-            orderBtn.classList.remove('order__preview--active')
-        }
-        else {
-            $('.order__content').slideDown(350)
-            orderBtn.classList.add('order__preview--active')
-        }
-    })
+    if (orderBtn) {
+        orderBtn.addEventListener('click', () => {
+            if (orderBtn.classList.contains('order__preview--active')) {
+                $('.order__content').slideUp(350)
+                orderBtn.classList.remove('order__preview--active')
+            }
+            else {
+                $('.order__content').slideDown(350)
+                orderBtn.classList.add('order__preview--active')
+            }
+        })
+    }
     
     // ORDER PROMOCODE
     const promocodeCheckbox = document.getElementById('promocode-checkbox'),
         promocodeInput = document.querySelector('.order__promocode'),
         promocodeApply = document.querySelector('.order__apply')
 
-    promocodeCheckbox.addEventListener('click', () => {
-        if (promocodeCheckbox.checked) {
-            promocodeInput.classList.add('order__promocode--active')
-        }
-        else {
+    if (promocodeCheckbox) {
+        promocodeCheckbox.addEventListener('click', () => {
+            if (promocodeCheckbox.checked) {
+                promocodeInput.classList.add('order__promocode--active')
+            }
+            else {
+                promocodeInput.classList.remove('order__promocode--active')
+            }
+        })
+    }
+
+    if (promocodeApply) {
+        promocodeApply.addEventListener('click', (event) => {
+            event.preventDefault()
+    
             promocodeInput.classList.remove('order__promocode--active')
-        }
-    })
-
-    promocodeApply.addEventListener('click', (event) => {
-        event.preventDefault()
-
-        promocodeInput.classList.remove('order__promocode--active')
-        document.querySelector('.order__applied').classList.add('order__applied--active')
-    })
+            document.querySelector('.order__applied').classList.add('order__applied--active')
+        })
+    }
 
     // CHECKBOX
     let stageCounter = 0 // Stage counter
@@ -230,33 +236,29 @@ document.addEventListener("DOMContentLoaded", function () {
         minusCart = document.getElementsByClassName('cart__minus'),
         plusCart = document.getElementsByClassName('cart__plus')
 
-    if (productQuantity) {
-        productQuantity.forEach((i) => {
-            minus[i].addEventListener('click', () => {
-                if ((countInput[i].value) * 1 >= 1) {
-                    countInput[i].value = (countInput[i].value) * 1 - 1;
-                }
-            });
-    
-            plus[i].addEventListener('click', () => {
-                countInput[i].value = (countInput[i].value) * 1 + 1;
-            })
-        })
-    }
+    productQuantity.forEach((s, i) => {
+        minus[i].addEventListener('click', () => {
+            if ((countInput[i].value) * 1 >= 1) {
+                countInput[i].value = (countInput[i].value) * 1 - 1;
+            }
+        });
 
-    if (cartQuantity) {
-        cartQuantity.forEach((i) => {
-            minusCart[i].addEventListener('click', () => {
-                if ((countInputCart[i].value) * 1 >= 1) {
-                    countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
-                }
-            });
-    
-            plusCart[i].addEventListener('click', () => {
-                countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
-            })
+        plus[i].addEventListener('click', () => {
+            countInput[i].value = (countInput[i].value) * 1 + 1;
         })
-    }
+    })
+
+    cartQuantity.forEach((s, i) => {
+        minusCart[i].addEventListener('click', () => {
+            if ((countInputCart[i].value) * 1 >= 1) {
+                countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
+            }
+        });
+
+        plusCart[i].addEventListener('click', () => {
+            countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+        })
+    })
 
     // CART
     const modalBtn = document.querySelectorAll('.shopping-cart__basket'),
