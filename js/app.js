@@ -305,6 +305,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ACCORDIONS FAQ
+    const faq = document.querySelectorAll('.faq__trigger')
+
+    if (faq) {
+        $('.faq__trigger').click(function() {
+            const triggerItem = $(this);
+    
+            if (triggerItem.hasClass('faq__trigger--active')) {
+                $(this).removeClass('faq__trigger--active');
+                $(this).next('.faq__content').slideUp(350);
+            }
+            else {
+                $('.faq__trigger').removeClass('faq__trigger--active');
+                $('.faq__trigger').next('.faq__content').slideUp(350);
+                $(this).addClass('faq__trigger--active');
+                $(this).next('.faq__content').slideDown(350);
+            }
+        })
+    }
+
     // SLICK
     $('.product__slider').slick({
         infinite: true,
@@ -313,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesToShow: 1
     });
 
-    $('.shop__wrapper--slider').slick({
+    $('.shop__wrapper--slider-md').slick({
         infinite: true,
         arrows: true,
         prevArrow: '<a class="arrow-left"><img src="img/icons/arrow-left.svg" alt=""></a>',
@@ -328,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             },
             {
-              breakpoint: 575,
+              breakpoint: 576,
               settings: {
                 slidesToShow: 1
               }
@@ -336,25 +356,41 @@ document.addEventListener("DOMContentLoaded", function () {
           ]
     });
 
-    // ACCORDIONS FAQ
-    const faq = document.querySelectorAll('.faq__trigger')
+    $('.shop__wrapper--slider-lg').slick({
+        infinite: true,
+        arrows: true,
+        prevArrow: '<a class="arrow-left"><img src="img/icons/arrow-left.svg" alt=""></a>',
+        nextArrow: '<a class="arrow-right"><img src="img/icons/arrow-right.svg" alt=""></a>',
+        dots: false,
+        slidesToShow: 4,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                  slidesToShow: 3
+                }
+            },
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 576,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+    });
 
-    if (faq) {
-        $('.faq__trigger').click(function() {
-            const triggerItem = $(this);
-    
-            if (triggerItem.hasClass('faq__trigger--active')) {
-                $(this).removeClass('faq__trigger--active');
-                $(this).next('.faq__content').slideUp(350);
-                console.log('Yes')
-            }
-            else {
-                $('.faq__trigger').removeClass('faq__trigger--active');
-                $('.faq__trigger').next('.faq__content').slideUp(350);
-                $(this).addClass('faq__trigger--active');
-                $(this).next('.faq__content').slideDown(350);
-                console.log('No')
-            }
-        })
-    }
+    $('.review--slider').slick({
+        infinite: true,
+        arrows: true,
+        prevArrow: '<a class="review__arrow-left"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 7H1" stroke="#79909C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 13L1 7L7 1" stroke="#79909C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>',
+        nextArrow: '<a class="review__arrow-right"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 7H1" stroke="#79909C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 13L1 7L7 1" stroke="#79909C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>',
+        dots: true,
+        slidesToShow: 1
+    });
 });

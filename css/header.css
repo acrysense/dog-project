@@ -152,6 +152,12 @@
     left: 50px;
     opacity: 0;
   }
+  75% {
+    left: 12px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
+  }
   100% {
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -164,6 +170,12 @@
   0% {
     left: 50px;
     opacity: 0;
+  }
+  75% {
+    left: 12px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 1;
   }
   100% {
     left: 0;
@@ -221,10 +233,10 @@
   }
   .overlay--open .nav__item {
     display: block;
-    -webkit-animation: fadeInRight 0.5s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards;
-            animation: fadeInRight 0.5s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards;
-    -webkit-animation-delay: 0.35s;
-            animation-delay: 0.35s;
+    -webkit-animation: fadeInRight 0.95s cubic-bezier(0.42, 0.83, 0.7, 1.25) forwards;
+            animation: fadeInRight 0.95s cubic-bezier(0.42, 0.83, 0.7, 1.25) forwards;
+    -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
     -webkit-transform-origin: bottom;
         -ms-transform-origin: bottom;
             transform-origin: bottom;

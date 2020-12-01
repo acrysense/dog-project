@@ -40,11 +40,18 @@
 .stage__item::before {
   counter-increment: section;
   content: "" counter(section) ".";
-  display: inline-block;
-  padding: 14px 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-right: 12px;
-  min-width: 48px;
-  min-height: 48px;
+  width: 48px;
+  height: 48px;
   font-size: 16px;
   font-weight: bold;
   color: #020F2F;
@@ -368,9 +375,9 @@
 .order__title--preview::after {
   content: '';
   display: inline-block;
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
   margin-left: 6px;
   width: 20px;
   height: 20px;
@@ -708,9 +715,9 @@
     display: none;
   }
   .order__preview--active .order__title--preview::after {
-    -webkit-transform: rotate(0);
-        -ms-transform: rotate(0);
-            transform: rotate(0);
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
   }
   .order__content {
     display: none;
@@ -761,6 +768,11 @@
   .checkout-form__group + .checkout-form__group {
     margin-top: 24px;
     margin-left: 0;
+  }
+  .checkout-form__continue {
+    margin-left: 0;
+    max-width: 100%;
+    width: 100%;
   }
   .order {
     max-width: 100%;

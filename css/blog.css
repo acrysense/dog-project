@@ -38,6 +38,8 @@
 .news__heading {
   max-width: 400px;
   width: 100%;
+  font-size: 36px;
+  font-weight: normal;
 }
 
 .news__description {
@@ -73,7 +75,6 @@
   margin-top: 16px;
   overflow: hidden;
   max-width: 280px;
-  max-height: 60px;
   font-size: 18px;
 }
 
@@ -88,6 +89,9 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .news__title {
+    max-height: 60px;
   }
 }
 
