@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="header header--circle" id="header">
         <a href="" class="logotype logotype--header">
             <picture>
                 <source srcset="img/icons/logotype.svg" media="(min-width: 1200px)">
@@ -79,7 +79,7 @@
     </header>
     <!-- End of header -->
     <!-- Main -->
-    <section class="main" id="main">
+    <section class="main main--full" id="main">
         <div class="container">
             <div class="main__wrapper">
                 <div class="main__content">
@@ -181,26 +181,33 @@
                 <div class="packages__item packages__item--plug">
                     <div class="packages__img"></div>
                     <h3 class="packages__title"></h3>
-                    <p class="packages__description"></p>
-                    <p class="packages__description">Partial List of Disabilities Covered</p>
-                    <p class="packages__description">Laws Protecting this Type of Dog</p>
-                    <p class="packages__description">Breed/Age/Sex of Dogs</p>
-                    <p class="packages__description">Fly in airplane for free</p>
-                    <p class="packages__description">Allowed in all housing regardless of pet policy</p>
-                    <p class="packages__description">Protected in All 50 States</p>
+                    <div class="packages__body">
+                        <p class="packages__heading"></p>
+                        <p class="packages__heading">Partial List of Disabilities Covered</p>
+                        <p class="packages__heading">Laws Protecting this Type of Dog</p>
+                        <p class="packages__heading">Breed/Age/Sex of Dogs</p>
+                        <p class="packages__heading">Fly in airplane for free</p>
+                        <p class="packages__heading">Allowed in all housing regardless of pet policy</p>
+                        <p class="packages__heading">Protected in All 50 States</p>
+                    </div>
+                    <div class="packages__btn-plug"></div>
                 </div>
                 <div class="packages__item">
                     <div class="packages__img">
                         <img src="img/icons/packages-01.svg" alt="Service Dog">
                     </div>
                     <h3 class="packages__title">Service Dog</h3>
-                    <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
-                    <p class="packages__description">Mobility issues, visual impairment (blindness), hearing impairment (deafness), seizures, diabetes, PTSD, autism, epilepsy, multiple sclerosis (MS), and other physical/mental disabilities</p>
-                    <p class="packages__description">Americans with Disabilities Act (ADA)</p>
-                    <p class="packages__description">Any is acceptable</p>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
+                    <div class="packages__body">
+                        <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
+                        <p class="packages__description">Mobility issues, visual impairment (blindness), hearing impairment (deafness), seizures, diabetes, PTSD, autism, epilepsy, multiple sclerosis (MS), and other physical/mental disabilities</p>
+                        <p class="packages__description">Americans with Disabilities Act (ADA)</p>
+                        <p class="packages__description">Any is acceptable</p>
+                    </div>
+                    <div class="packages__body">
+                        <div class="packages__mark"></div>
+                        <div class="packages__mark"></div>
+                        <div class="packages__mark"></div>
+                    </div>
                     <a href="checkout.html" class="packages__btn btn">Get Started</a>
                 </div>
                 <div class="packages__item">
@@ -208,13 +215,17 @@
                         <img src="img/icons/packages-02.svg" alt="Emotional Support Dog">
                     </div>
                     <h3 class="packages__title">Emotional Support Dog</h3>
-                    <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
-                    <p class="packages__description">Anxiety, depression, bipolar/mood disorders, panic attacks, and other emotional/psychological conditions</p>
-                    <p class="packages__description">Fair Housing Amendments Act Air Carrier Access Act</p>
-                    <p class="packages__description">Any is acceptable</p>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
+                    <div class="packages__body">
+                        <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
+                        <p class="packages__description">Anxiety, depression, bipolar/mood disorders, panic attacks, and other emotional/psychological conditions</p>
+                        <p class="packages__description">Fair Housing Amendments Act Air Carrier Access Act</p>
+                        <p class="packages__description">Any is acceptable</p>
+                    </div>
+                    <div class="packages__body">
+                        <div class="packages__mark"></div>
+                        <div class="packages__mark"></div>
+                        <div class="packages__mark"></div>
+                    </div>
                     <a href="checkout.html" class="packages__btn btn">Get Started</a>
                 </div>
                 <div class="packages__item">
@@ -222,13 +233,17 @@
                         <img src="img/icons/packages-03.svg" alt="Therapy Dog">
                     </div>
                     <h3 class="packages__title">Therapy Dog</h3>
-                    <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
-                    <p class="packages__description"></p>
-                    <p class="packages__description"></p>
-                    <p class="packages__description">Any is acceptable</p>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
-                    <div class="packages__mark"></div>
+                    <div class="packages__body">
+                        <p class="packages__description">Service dogs help with performing a function for a person that is limited by a disability.</p>
+                        <p class="packages__description packages__description--empty"></p>
+                        <p class="packages__description packages__description--empty"></p>
+                        <p class="packages__description">Any is acceptable</p>
+                    </div>
+                    <div class="packages__body">
+                        <div class="packages__mark packages__mark--empty"></div>
+                        <div class="packages__mark packages__mark--empty"></div>
+                        <div class="packages__mark packages__mark--empty"></div>
+                    </div>
                     <a href="checkout.html" class="packages__btn btn">Get Started</a>
                 </div>
             </div>
@@ -274,7 +289,7 @@
     <!-- Understand the Laws -->
     <section class="laws" id="laws">
         <div class="container">
-            <div class="section-heading">
+            <div class="section-heading section-heading--wide">
                 <h2 class="section-heading__title">Understand the Laws</h2>
                 <p class="section-heading__description">It’s important to understand all laws and state regulation in regards to Service and Emotional Support animals. Know your rights!</p>
             </div>
@@ -297,6 +312,21 @@
         </div>
     </section>
     <!-- End of understand the laws -->
+    <!-- Why Choose Us? -->
+    <section class="choose-scroll" id="choose-scroll">
+        <div class="container">
+            <div class="section-heading section-heading--wide">
+                <h2 class="section-heading__title">Why Choose Us?</h2>
+                <p class="section-heading__description">By using Federal Dog Registry you can be confident that you can bring your animal with you anywhere you go.</p>
+            </div>
+            <div class="choose-scroll__wrapper">
+                <div class="choose-scroll__img">
+                    <img src="img/icons/choose-01.svg" alt="By using Federal Dog Registry you can be confident that you can bring your animal with you anywhere you go.">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Why Choose Us? -->
     <!-- Flying -->
     <section class="flying" id="flying">
         <div class="container">
@@ -379,7 +409,7 @@
     </section>
     <!-- End of reviews -->
     <!-- CTA -->
-    <section class="cta" id="cta">
+    <section class="cta cta--main" id="cta">
         <div class="container">
             <div class="cta__wrapper">
                 <h2 class="cta__title">Register your Service or ES animal today!</h2>

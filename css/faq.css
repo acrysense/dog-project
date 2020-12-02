@@ -45,7 +45,7 @@
   display: block;
 }
 
-.faq {
+.faq--indent {
   margin: 80px 0;
 }
 
@@ -67,8 +67,11 @@
 }
 
 .faq__item {
-  margin-bottom: 8px;
   width: 100%;
+}
+
+.faq__item + .faq__item {
+  margin-top: 8px;
 }
 
 .faq__trigger {

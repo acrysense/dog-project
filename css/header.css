@@ -11,6 +11,17 @@
   padding: 24px;
 }
 
+.header--circle::before {
+  content: '';
+  position: absolute;
+  top: -469px;
+  left: -318px;
+  width: 650px;
+  height: 650px;
+  border: 1px solid #CFD8DC;
+  border-radius: 50%;
+}
+
 .logotype--header {
   position: relative;
   z-index: 101;
@@ -185,6 +196,13 @@
   }
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+  .header--circle::before {
+    top: -499px;
+    left: -495px;
+  }
+}
+
 @media (min-width: 992px) {
   .hamburger,
   .interface--mobile {
@@ -193,6 +211,10 @@
 }
 
 @media (max-width: 991px) {
+  .header--circle::before {
+    top: -499px;
+    left: -466px;
+  }
   .overlay {
     display: -webkit-box;
     display: -ms-flexbox;
