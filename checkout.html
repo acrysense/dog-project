@@ -301,7 +301,7 @@
                                     id="upload-file__upload"
                                     class="upload-file__input"
                                     accept=".jpg, .jpeg, .png"
-                                    onchange="onFileSelected(event)"
+                                    oninput="onFileSelected(event)"
                                 >
                                 <label class="upload-file__label" for="upload-file__upload">
                                     <div class="upload-file__icon">
@@ -565,6 +565,17 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="js/croppie.min.js"></script>
     <script>
+        var input = document.querySelectorAll('.cr-slider');
+
+        input.oninput = function() {
+            range()
+        };
+
+        function range() {
+            let rangeVal = $('.cr-slider').val();
+            $('.cr-slider').css({'background':'-webkit-linear-gradient(to right, #3C5FAC 0%, #3C5FAC '+rangeVal+'%, #ffffff '+rangeVal+'%, #ffffff 100%)'})
+        }
+
         const cropElement = document.getElementById('crop-img');
 
         let resize = new Croppie(cropElement, {
@@ -723,6 +734,21 @@
 
                 // SHOW UPLOADED FILES
                 dropZoneText.textContent = e.dataTransfer.files[0].name;
+
+                let selectedFile = e.dataTransfer.files[0];
+                let reader = new FileReader();
+
+                imgtag.title = selectedFile.name;
+                
+                reader.onload = function(event) {
+                    imgtag.src = event.target.result;
+                    cropImg.src = imgtag.src
+                    resize.bind({
+                        url: imgtag.src,
+                    });
+                };
+
+                reader.readAsDataURL(selectedFile);
 
                 if (crop && cropOverlay) {
                     crop.classList.add('crop--active')
