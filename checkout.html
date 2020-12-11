@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="css/croppie.css">
+    <link rel="stylesheet" href="css/crop.css">
     <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/shop.css">
 </head>
@@ -292,6 +294,30 @@
                                     <input type="text" id="animal-zip" class="checkout-form__input">
                                 </div>
                             </div>
+                            <div class="upload-file">
+                                <input
+                                    type="file"
+                                    name="files[]"
+                                    id="upload-file__upload"
+                                    class="upload-file__input"
+                                    accept=".jpg, .jpeg, .png"
+                                    onchange="onFileSelected(event)"
+                                >
+                                <label class="upload-file__label" for="upload-file__upload">
+                                    <div class="upload-file__icon">
+                                        <svg class="upload-file__svg" width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M25.8 8.305C24.8933 3.56125 20.8533 0 16 0C12.1467 0 8.8 2.255 7.13333 5.555C3.12 5.995 0 9.50125 0 13.75C0 18.3013 3.58667 22 8 22H25.3333C29.0133 22 32 18.92 32 15.125C32 11.495 29.2667 8.5525 25.8 8.305ZM18.6667 12.375V17.875H13.3333V12.375H9.33333L16 5.5L22.6667 12.375H18.6667Z" fill="#79909C"/>
+                                        </svg>
+                                    </div>
+                                    <div class="upload-file__img">
+                                        <img id="cropped-img" height="100" width="100">
+                                    </div>
+                                    <div class="upload-file__text">
+                                        <span class="upload-file__btn">Upload Image</span>
+                                        <span class="upload-file__help">Recommended size: 200x200px <br>JPG, PNG, GIF. Max size: 2MB</span>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                         <div class="checkout-form__nav">
                             <a href="" class="checkout-form__back">Back</a>
@@ -516,9 +542,199 @@
         </div>
     </section>
     <!-- End of main -->
+    <!-- Crop IMG -->
+    <div class="crop-overlay">
+        <div class="crop">
+            <div class="crop__close"></div>
+            <div class="crop__wrapper">
+                <div class="crop__img">
+                    <img id="crop-img" height="442" width="100%">
+                </div>
+                <div class="crop__body">
+                    <div class="crop__buttons">
+                        <a href="" class="crop__cancel">Cancel</a>
+                        <a href="" class="crop__save btn">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of crop IMG -->
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="js/croppie.min.js"></script>
+    <script>
+        const cropElement = document.getElementById('crop-img');
+
+        let resize = new Croppie(cropElement, {
+            viewport: {
+                width: 164,
+                height: 164
+            }
+        });
+
+        // CHECKOUT UPLOAD BTNs
+        const crop = document.querySelector('.crop')
+        const cropOverlay = document.querySelector('.crop-overlay')
+        const cropClose = document.querySelector('.crop__close')
+        const cropCancel = document.querySelector('.crop__cancel')
+        const cropSave = document.querySelector('.crop__save')
+        let uploadFileInput = document.getElementById('upload-file__upload')
+        let uploadIcon = document.querySelector('.upload-file__icon')
+        let uploadImg = document.querySelector('.upload-file__img')
+        let croppedImg = document.getElementById('cropped-img')
+
+        if (cropClose) {
+            cropClose.addEventListener('click', () => {
+                crop.classList.remove('crop--active')
+                cropOverlay.classList.remove('crop-overlay--active')
+                document.body.classList.remove("scroll-disabled")
+            });
+        }
+
+        if (cropCancel && cropSave) {
+            cropCancel.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                if (crop.classList.contains('crop--active') && cropOverlay.classList.contains('crop-overlay--active')) {
+                    crop.classList.remove('crop--active')
+                    cropOverlay.classList.remove('crop-overlay--active')
+                    document.body.classList.remove("scroll-disabled")
+                }
+            })
+
+            cropSave.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                resize.result('blob').then(function(blob) {
+                    uploadIcon.style.display = 'none'
+                    uploadImg.style.display = 'block'
+
+                    croppedImg.src = URL.createObjectURL(blob)
+                });
+
+                if (crop.classList.contains('crop--active') && cropOverlay.classList.contains('crop-overlay--active')) {
+                    crop.classList.remove('crop--active')
+                    cropOverlay.classList.remove('crop-overlay--active')
+                    document.body.classList.remove("scroll-disabled")
+                }
+            })
+        }
+
+        // UPLOAD FILE AND CROP IMG
+        let imgtag = document.getElementById("crop-img")
+        let cropImg = document.querySelector('.cr-image')
+
+        function onFileSelected(event) {
+            let selectedFile = event.target.files[0];
+            let reader = new FileReader();
+
+            imgtag.title = selectedFile.name;
+            
+            reader.onload = function(event) {
+                imgtag.src = event.target.result;
+                cropImg.src = imgtag.src
+                resize.bind({
+                    url: imgtag.src,
+                });
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
+
+        for (let i = 1; i <= 4; i++) { 
+            window['uploadDragFiles_'+i] = new Object();
+        }
+
+        document.querySelectorAll('.upload-file').forEach((current_item, index) => {
+            const inputFile = current_item.querySelector('.upload-file__input');
+
+            // ARRAY FILES
+            let fileList = [];
+
+            // UPLOAD IMAGE BTN
+            let textSelector = current_item.querySelector('.upload-file__btn');
+
+            // FILE SELECTION EVENT
+            inputFile.addEventListener('change', () => {
+                fileList.push(...inputFile.files);
+
+                fileList.forEach(file => {
+                    uploadFile(file);
+                });
+            });
+
+            // FILE SIZE CHECK
+            const uploadFile = (file) => {
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('File size no more than 2MB');
+                    return;
+                }
+
+                // SHOW UPLOADED FILES
+                textSelector.textContent = file.name;
+                fileList = [];
+            
+                if (crop && cropOverlay) {
+                    crop.classList.add('crop--active')
+                    cropOverlay.classList.add('crop-overlay--active')
+                    document.body.classList.add("scroll-disabled")
+                }
+            }
+
+            // DRAG-AND-DROP
+            const dropZone = current_item.querySelector('.upload-file__label');
+            const dropZoneText = current_item.querySelector('.upload-file__btn');
+            const maxFileSize = 2000000; // MAX SIZE: 2MB
+
+            // SUPPORT CHECK
+            if (typeof (window.FileReader) == 'undefined') {
+                dropZone.textContent = 'Drag-and-Drop not supported';
+                dropZone.classList.add('upload-file__label--error'); // ERROR CHECK
+            }
+
+            // EVENT - DRAG-AND-DROP
+            dropZone.ondragover = function () {
+                this.classList.add('upload-file__label--hover');
+                return false;
+            };
+
+            // EVENT - CANCELING DRAG-AND-DROP
+            dropZone.ondragleave = function () {
+                this.classList.remove('upload-file__label--hover');
+                return false;
+            };
+
+            // EVENT - SUCCESS DRAG-AND-DROP
+            dropZone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                this.classList.remove('upload-file__label--hover');
+                this.classList.add('upload-file__label--drop');
+
+                uploadDragFiles = e.dataTransfer.files[0];
+
+                // FILE SIZE CHECK
+                if (uploadDragFiles.size > maxFileSize) {
+                    dropZoneText.textContent = 'File size no more than 2MB';
+                    this.addClass('upload-file__label--error');
+                    return false;
+                }
+
+                // SHOW UPLOADED FILES
+                dropZoneText.textContent = e.dataTransfer.files[0].name;
+
+                if (crop && cropOverlay) {
+                    crop.classList.add('crop--active')
+                    cropOverlay.classList.add('crop-overlay--active')
+                    document.body.classList.add("scroll-disabled")
+                }
+
+                window['uploadDragFiles_'+index] = uploadDragFiles;
+            });
+
+        });
+    </script>
     <script src="js/app.min.js"></script>
 </body>
 </html>

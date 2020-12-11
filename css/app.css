@@ -93,6 +93,14 @@ svg path {
   transition: stroke 0.35s;
 }
 
+input:not([type=checkbox]):not([type=radio]),
+textarea,
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
 /* COMMON FOR PAGE */
 .scroll-disabled {
   overflow: hidden;
@@ -165,6 +173,10 @@ svg path {
 
 .section-heading--wide {
   max-width: 760px;
+}
+
+.section-heading--medium {
+  max-width: 680px;
 }
 
 .section-heading__title {

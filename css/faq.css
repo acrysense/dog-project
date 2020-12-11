@@ -1,3 +1,11 @@
+.faq-section {
+  padding: 80px 0 128px;
+}
+
+.switch--faq .switch__control {
+  margin: 48px auto 34px;
+}
+
 .switch__control {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,6 +36,9 @@
   color: #3C5FAC;
   border-radius: 94px;
   cursor: pointer;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .switch__item--active {
@@ -155,7 +166,7 @@
 }
 
 .faq__help {
-  margin: 40px auto 0;
+  margin: 48px auto 0;
   max-width: 518px;
   font-size: 16px;
   text-align: center;
@@ -180,6 +191,9 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  .faq__column {
+    margin-top: 8px;
   }
 }
 

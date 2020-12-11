@@ -20,6 +20,10 @@
   margin-top: 32px;
 }
 
+.shop__wrapper--slider .shop__name {
+  max-height: 100%;
+}
+
 .shop__item {
   padding: 24px;
   margin-bottom: 40px;

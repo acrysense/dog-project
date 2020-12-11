@@ -196,9 +196,12 @@ document.addEventListener("DOMContentLoaded", function () {
             item.addEventListener('click', () => {
                 document.querySelectorAll('.switch__item').forEach((child) => child.classList.remove('switch__item--active'))
                 document.querySelectorAll('.switch__content').forEach((child) => child.classList.remove('switch__content--active'))
+                document.querySelectorAll('.tabs__item').forEach((child) => child.classList.remove('tabs__item--active'))
+                document.querySelectorAll('.tabs__content').forEach((child) => child.classList.remove('tabs__content--active'))
     
                 item.classList.add('switch__item--active')
                 document.querySelectorAll('.switch__content')[i].classList.add('switch__content--active')
+                document.querySelectorAll('.switch__content')[i].children.classList.add('switch__content--active')
             })
         })
     }
@@ -236,29 +239,33 @@ document.addEventListener("DOMContentLoaded", function () {
         minusCart = document.getElementsByClassName('cart__minus'),
         plusCart = document.getElementsByClassName('cart__plus')
 
-    productQuantity.forEach((s, i) => {
-        minus[i].addEventListener('click', () => {
-            if ((countInput[i].value) * 1 >= 1) {
-                countInput[i].value = (countInput[i].value) * 1 - 1;
-            }
-        });
-
-        plus[i].addEventListener('click', () => {
-            countInput[i].value = (countInput[i].value) * 1 + 1;
+    if (productQuantity) {
+        productQuantity.forEach((s, i) => {
+            minus[i].addEventListener('click', () => {
+                if ((countInput[i].value) * 1 >= 1) {
+                    countInput[i].value = (countInput[i].value) * 1 - 1;
+                }
+            });
+    
+            plus[i].addEventListener('click', () => {
+                countInput[i].value = (countInput[i].value) * 1 + 1;
+            })
         })
-    })
+    }
 
-    cartQuantity.forEach((s, i) => {
-        minusCart[i].addEventListener('click', () => {
-            if ((countInputCart[i].value) * 1 >= 1) {
-                countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
-            }
-        });
-
-        plusCart[i].addEventListener('click', () => {
-            countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+    if (cartQuantity) {
+        cartQuantity.forEach((s, i) => {
+            minusCart[i].addEventListener('click', () => {
+                if ((countInputCart[i].value) * 1 >= 1) {
+                    countInputCart[i].value = (countInputCart[i].value) * 1 - 1;
+                }
+            });
+    
+            plusCart[i].addEventListener('click', () => {
+                countInputCart[i].value = (countInputCart[i].value) * 1 + 1;
+            })
         })
-    })
+    }
 
     // CART
     const modalBtn = document.querySelectorAll('.shopping-cart__basket'),
@@ -267,8 +274,8 @@ document.addEventListener("DOMContentLoaded", function () {
         modalOverlay = document.querySelector('.cart-overlay');
     
     if (modalBtn) {
-        modalBtn.forEach(function(item){
-            item.addEventListener('click', function (event) {
+        modalBtn.forEach((item) => {
+            item.addEventListener('click', (event) => {
                 event.preventDefault();
     
                 document.body.classList.add('scroll-disabled');
@@ -278,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    document.body.addEventListener('keyup', function (event) {
+    document.body.addEventListener('keyup', (event) => {
         let key = event.keyCode;
 
         if (key == 27) {
@@ -290,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     if (modalOverlay) {
-        modalOverlay.addEventListener('click', function() {
+        modalOverlay.addEventListener('click', () => {
             document.body.classList.remove('scroll-disabled');
             document.querySelector('.cart.cart--active').classList.remove('cart--active');
             this.classList.remove('cart-overlay--active');
@@ -298,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (modalClose) {
-        modalClose.addEventListener('click', function() {
+        modalClose.addEventListener('click', () => {
             document.body.classList.remove('scroll-disabled');
             document.querySelector('.cart.cart--active').classList.remove('cart--active');
             modalOverlay.classList.remove('cart-overlay--active');
